@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerConfig playerConfig;
-    private static Vector2 BOUNDS = new Vector2(10, 6);
+    private static Vector2 BOUNDS = new Vector2(7.5f, 7);
     private Rigidbody2D rb;
     private ParticleSystem bulletParticleSystem;
 
+    public GameObject impactExplosion;
+    public List<ParticleCollisionEvent> collisionEvents;
+
     void Awake()
     {
+        collisionEvents = new List<ParticleCollisionEvent>();
         rb = GetComponent<Rigidbody2D>();
         bulletParticleSystem = GetComponent<ParticleSystem>();
     }
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * playerConfig.speed;
+
 
         var xValidPosition = Mathf.Clamp(rb.position.x, -BOUNDS.x, BOUNDS.x);
         var yValidPosition = Mathf.Clamp(rb.position.y, -BOUNDS.y, BOUNDS.y);
@@ -31,6 +35,16 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             bulletParticleSystem.Play();
+        }
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        int numCollisionEvents = bulletParticleSystem.GetCollisionEvents(other, collisionEvents);
+
+        for (int i = 0; i < numCollisionEvents; i++)
+        {
+            Instantiate(impactExplosion, collisionEvents[i].intersection, Quaternion.identity);
         }
     }
 }
