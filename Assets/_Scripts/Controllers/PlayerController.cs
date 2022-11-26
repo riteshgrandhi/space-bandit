@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(ParticleSystem))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : Damageable
 {
     public PlayerConfig playerConfig;
     private static Vector2 BOUNDS = new Vector2(7.5f, 7);
@@ -45,6 +45,15 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < numCollisionEvents; i++)
         {
             Instantiate(impactExplosion, collisionEvents[i].intersection, Quaternion.identity);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.TryGetComponent<Enemy>(out Enemy e))
+        {
+            Debug.Log("Daamn");
+            ApplyDamage(health);
         }
     }
 }

@@ -7,10 +7,8 @@ public class WaveController : MonoBehaviour
     public WaveConfig waveConfig;
     private List<Damageable> allSpawnedEnemies = new List<Damageable>();
     private List<Damageable> currentPhaseEnemies = new List<Damageable>();
-    void Start()
-    {
-        StartCoroutine(StartWavePhases());
-    }
+
+    void Start() => StartCoroutine(StartWavePhases());
 
     private IEnumerator StartWavePhases()
     {

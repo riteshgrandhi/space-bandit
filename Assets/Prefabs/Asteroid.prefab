@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50277dfdd6fd744418d5598e6863e1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  scoreIncrement: 100
+  health: 2
   explosion: {fileID: 8269470522277082639, guid: 86dac789cd6ce456083192911a1b3edc, type: 3}
-  force: 10
+  flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
+  force: 6
