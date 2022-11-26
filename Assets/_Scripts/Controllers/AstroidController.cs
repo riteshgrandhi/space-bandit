@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class AstroidController : MonoBehaviour
+public class AstroidController : Enemy
 {
-    public float force = 6;
+    public float force = 4;
     private Rigidbody2D rb;
     void Awake()
     {
