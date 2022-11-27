@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ParticleSystem))]
 public class GameManager : Singleton<GameManager>
@@ -48,7 +49,16 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         if(spawnedPlayer == null || spawnedPlayer.isDead){
+<<<<<<< Updated upstream
             gameStatusText.text = "MISSION  FAILED";
+=======
+            gameStatusText.text = "MISSION FAILED \nPress R to Restart";
+            
+            if(Input.GetKeyUp(KeyCode.R)){
+                SceneManager.LoadScene(0);
+            }
+
+>>>>>>> Stashed changes
         }
 
         livesText.text = spawnedPlayer.health.ToString();
@@ -57,6 +67,9 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator StartWaves()
     {
+
+        AudioSource audioSource;
+
         // time before spawning waves
         gameStatusText.text = "MISSION:  ELIMINATE  THREATS";
         yield return new WaitForSeconds(2);
@@ -71,6 +84,8 @@ public class GameManager : Singleton<GameManager>
 
             // time to wait in hyperspeed
             yield return new WaitForSeconds(3);
+            audioSource = GetComponent<AudioSource>();
+            audioSource.Play();
 
             // transition to normal speed
             gameStatusText.text = "WARNING:  THREAT  DETECTED\nEXITING  HYPERSPEED...";

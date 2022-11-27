@@ -58,6 +58,14 @@ MonoBehaviour:
   waveConfigs:
   - {fileID: 11400000, guid: 036c54cefb7be4074818dc09dc9a1f03, type: 2}
   - {fileID: 11400000, guid: 87edbecf26b4c4a84bacdad87dbc1020, type: 2}
+  - {fileID: 11400000, guid: 55bb78d5352cf014ba973fd4a67a61f0, type: 2}
+  - {fileID: 11400000, guid: 10c9ccdf144fd8c45a405b916352c29c, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
   playerTemplate: {fileID: 5333779267280138444, guid: 2e3b86904a3fa452ba561e25be396b82, type: 3}
   templateWaveController: {fileID: 3789937375752174787, guid: 1d787a4a2e84946da890ca21bf15372c, type: 3}
   livesText: {fileID: 6704060929941149308}
@@ -707,6 +715,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4091,6 +4100,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 1
@@ -4981,10 +4991,10 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_wordSpacing: 20
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
