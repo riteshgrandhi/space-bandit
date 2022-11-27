@@ -45,7 +45,7 @@ public class Damageable : MonoBehaviour
 
         Instantiate(impactExplosion, gameObject.transform.position + Vector3.left * gameObject.GetComponent<Collider2D>().bounds.extents.x, Quaternion.identity);
 
-        ApplyDamage();
+        ApplyDamage(other.GetComponentInParent<Enemy>()?.damage ?? 1);
     }
 
     public virtual void ApplyDamage(byte value = 1, bool kia = true)

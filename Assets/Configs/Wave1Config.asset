@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave1Config
   m_EditorClassIdentifier: 
   phases:
-  - enemy: {fileID: 3960369105347125858, guid: 01b25a6fe448f4cf082c760ecf16947d, type: 3}
+  - enemy: {fileID: 8079784269744899160, guid: 84dfcfdf553e64b219f79b822bd54927, type: 3}
     count: 2
     onPhaseSpawningDone: 0
     waitBeforeNextPhaseSeconds: 1

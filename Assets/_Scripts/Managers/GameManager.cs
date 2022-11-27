@@ -49,7 +49,6 @@ public class GameManager : Singleton<GameManager>
     {
         if(spawnedPlayer == null || spawnedPlayer.isDead){
             gameStatusText.text = "MISSION  FAILED";
-
         }
 
         livesText.text = spawnedPlayer.health.ToString();
@@ -140,9 +139,5 @@ public class GameManager : Singleton<GameManager>
             instantiated.SetSpeed(currentSpeed);
             lastPickUpTime = Time.time;
         }
-    }
-
-    public void OnPlayerDead(){
-
     }
 }
