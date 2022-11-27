@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(ParticleSystem))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : Damageable
 {
     public PlayerConfig playerConfig;
@@ -9,18 +9,16 @@ public class PlayerController : Damageable
     private Rigidbody2D rb;
     private ParticleSystem bulletParticleSystem;
 
-    public GameObject impactExplosion;
-    public List<ParticleCollisionEvent> collisionEvents;
-
-    void Awake()
+    protected override void Awake()
     {
-        collisionEvents = new List<ParticleCollisionEvent>();
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
-        bulletParticleSystem = GetComponent<ParticleSystem>();
+        bulletParticleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * playerConfig.speed;
 
 
@@ -38,19 +36,9 @@ public class PlayerController : Damageable
         }
     }
 
-    void OnParticleCollision(GameObject other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        int numCollisionEvents = bulletParticleSystem.GetCollisionEvents(other, collisionEvents);
-
-        for (int i = 0; i < numCollisionEvents; i++)
-        {
-            Instantiate(impactExplosion, collisionEvents[i].intersection, Quaternion.identity);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.TryGetComponent<Enemy>(out Enemy e))
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy e))
         {
             ApplyDamage(health);
         }

@@ -13,12 +13,12 @@ public class GameManager : Singleton<GameManager>
     public List<WaveConfig> waveConfigs;
     public PlayerController playerTemplate;
     public WaveController templateWaveController;
+    public float currentSpeed;
     private PlayerController spawnedPlayer;
     private ParticleSystem backgroundParticleSystem;
     private ParticleSystem.MainModule main;
     private ParticleSystem.TrailModule trails;
-
-    new void Awake()
+    protected override void Awake()
     {
         base.Awake();
         backgroundParticleSystem = GetComponent<ParticleSystem>();
@@ -45,11 +45,12 @@ public class GameManager : Singleton<GameManager>
         foreach (WaveConfig waveConfig in waveConfigs)
         {
             // time to wait in hyperspeed
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
 
             // transition to normal speed
-            StartCoroutine(StartTransitionToNormal(5));
-            yield return new WaitForSeconds(5);
+            currentSpeed = normalSpeedMultiplier;
+            StartCoroutine(StartTransitionToNormal(3));
+            yield return new WaitForSeconds(3);
 
             // Spawn wave
             templateWaveController.waveConfig = waveConfig;
@@ -57,8 +58,9 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitUntil(() => instantiatedWave.isDone);
 
             // transition to hyperspeed
-            StartCoroutine(StartTransitionToHyperSpeed(5));
-            yield return new WaitForSeconds(5);
+            currentSpeed = hyperSpeedMultiplier;
+            StartCoroutine(StartTransitionToHyperSpeed(3));
+            yield return new WaitForSeconds(3);
         }
     }
 

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8079784269744899172}
   - component: {fileID: 8079784269744899173}
-  - component: {fileID: 8079784269744899175}
   - component: {fileID: 8079784269744899163}
+  - component: {fileID: 8290001436496887229}
   - component: {fileID: 8079784269744899160}
   m_Layer: 7
-  m_Name: Asteroid1
+  m_Name: Asteroid4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 05f7e61f8d6394c79a564bf3f0151775, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9082271ef32cf4464928f51109cb2783, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8079784269744899175
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079784269744899170}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9a2cac0b612e94dca98c9b3f7edcda43, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.06}
-  serializedVersion: 2
-  m_Radius: 0.6
 --- !u!50 &8079784269744899163
 Rigidbody2D:
   serializedVersion: 4
@@ -115,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
@@ -124,6 +108,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &8290001436496887229
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079784269744899170}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 9a2cac0b612e94dca98c9b3f7edcda43, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.022063255, y: -0.021896472}
+  m_Size: {x: 1.5000076, y: 1.0141846}
+  m_Direction: 1
 --- !u!114 &8079784269744899160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50277dfdd6fd744418d5598e6863e1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreIncrement: 100
-  health: 2
+  scoreIncrement: 200
+  health: 4
   explosion: {fileID: 8269470522277082639, guid: 86dac789cd6ce456083192911a1b3edc, type: 3}
   flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
-  force: 8
+  force: 12

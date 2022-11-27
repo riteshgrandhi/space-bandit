@@ -8,7 +8,6 @@ public class WaveController : MonoBehaviour
     public WaveConfig waveConfig;
     private List<Damageable> allSpawnedEnemies = new List<Damageable>();
     private List<Damageable> currentPhaseEnemies = new List<Damageable>();
-
     void Start() => StartCoroutine(StartWavePhases());
 
     private IEnumerator StartWavePhases()
@@ -41,8 +40,11 @@ public class WaveController : MonoBehaviour
     {
         for (int i = 0; i < currentPhase.count; i++)
         {
-            Vector2 spawnPosition = new Vector3(10, Random.Range(7, -7));
+            Vector2 spawnPosition = new Vector3(10, Random.Range(12, -12));
             Enemy spawnedEnemy = Instantiate(currentPhase.enemy, spawnPosition, Quaternion.identity);
+            
+            spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
+
             spawnedEnemy.OnDeathHandler += OnSpawnedEnemyDeath;
             currentPhaseEnemies.Add(spawnedEnemy);
             allSpawnedEnemies.Add(spawnedEnemy);
@@ -52,11 +54,8 @@ public class WaveController : MonoBehaviour
 
     private void OnSpawnedEnemyDeath(Damageable enemy)
     {
-        Debug.Log(enemy.name + " Dead!");
         bool resultAll = allSpawnedEnemies.Remove(enemy);
-        // Debug.Log("resultAll: " + resultAll);
 
         bool resultCurrent = currentPhaseEnemies.Remove(enemy);
-        // Debug.Log("resultCurrent: " + resultCurrent);
     }
 }

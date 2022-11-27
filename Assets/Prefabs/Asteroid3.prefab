@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8079784269744899172}
   - component: {fileID: 8079784269744899173}
   - component: {fileID: 8079784269744899163}
-  - component: {fileID: 8079784269744899160}
   - component: {fileID: 8290001436496887229}
-  m_Layer: 0
+  - component: {fileID: 8079784269744899160}
+  m_Layer: 7
   m_Name: Asteroid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &8290001436496887229
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079784269744899170}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 9a2cac0b612e94dca98c9b3f7edcda43, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04, y: -0.06}
+  m_Size: {x: 2.15, y: 1.5}
+  m_Direction: 1
 --- !u!114 &8079784269744899160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,19 +141,3 @@ MonoBehaviour:
   explosion: {fileID: 8269470522277082639, guid: 86dac789cd6ce456083192911a1b3edc, type: 3}
   flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
   force: 10
---- !u!70 &8290001436496887229
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079784269744899170}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9a2cac0b612e94dca98c9b3f7edcda43, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.04, y: -0.06}
-  m_Size: {x: 2.15, y: 1.5}
-  m_Direction: 1

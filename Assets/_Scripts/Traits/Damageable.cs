@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D), typeof(SpriteRenderer))]
@@ -11,19 +12,19 @@ public class Damageable : MonoBehaviour
     public OnDeath OnDeathHandler;
     public Material flashMaterial;
     private SpriteRenderer spriteRenderer;
-    // private Material originalMaterial;
-    // private Coroutine flashRoutine;
-    private bool isPlayer;
-
-    void Awake()
+    private Material originalMaterial;
+    private Coroutine flashRoutine;
+    public GameObject impactExplosion;
+    
+    public List<ParticleCollisionEvent> collisionEvents;
+    protected virtual void Awake()
     {
-        isPlayer = TryGetComponent<PlayerController>(out PlayerController player);
-        // spriteRenderer = GetComponent<SpriteRenderer>();
-        // Debug.Log(spriteRenderer);
-        // originalMaterial = spriteRenderer.material;
+        collisionEvents = new List<ParticleCollisionEvent>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (Mathf.Abs(transform.position.x) > 10)
         {
@@ -31,19 +32,20 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    void OnParticleCollision(GameObject other)
+    protected virtual void OnParticleCollision(GameObject other)
     {
-        if (!isPlayer)
-        {
-            ApplyDamage();
-        }
+        Instantiate(impactExplosion, gameObject.transform.position + Vector3.left * gameObject.GetComponent<Collider2D>().bounds.extents.x, Quaternion.identity);
+
+        ApplyDamage();
     }
 
     public void ApplyDamage(byte value = 1, bool spawnExplosion = true)
     {
         health -= value;
 
-        // StartCoroutine(DoHitBlink());
+        flashRoutine = StartCoroutine(DoHitBlink());
+
+        spriteRenderer.material = flashMaterial;
 
         if (health <= 0)
         {
@@ -55,19 +57,20 @@ public class Damageable : MonoBehaviour
             {
                 OnDeathHandler(this);
             };
-            Destroy(gameObject);
+            spriteRenderer.material = flashMaterial;
+            Destroy(gameObject, 0.1f);
             GameManager.Instance.AddScore(scoreIncrement);
         }
     }
 
-    // private IEnumerator DoHitBlink()
-    // {
-    //     Debug.Log(this.name);
-    //     spriteRenderer.material = flashMaterial;
-    //     yield return new WaitForSeconds(0.2f);
-    //     spriteRenderer.material = originalMaterial;
-    //     flashRoutine = null;
-    // }
+    private IEnumerator DoHitBlink()
+    {
+        spriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.material = originalMaterial;
+        StopCoroutine(flashRoutine);
+        flashRoutine = null;
+    }
 }
 
 public delegate void OnDeath(Damageable thisEnemy);
