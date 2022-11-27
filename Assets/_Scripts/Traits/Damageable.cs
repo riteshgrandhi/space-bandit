@@ -15,7 +15,7 @@ public class Damageable : MonoBehaviour
     private Material originalMaterial;
     private Coroutine flashRoutine;
     public GameObject impactExplosion;
-    
+
     public List<ParticleCollisionEvent> collisionEvents;
     protected virtual void Awake()
     {
@@ -28,7 +28,7 @@ public class Damageable : MonoBehaviour
     {
         if (Mathf.Abs(transform.position.x) > 10)
         {
-            ApplyDamage(health, false);
+            ApplyDamage(health, false, 5f);
         }
     }
 
@@ -39,11 +39,14 @@ public class Damageable : MonoBehaviour
         ApplyDamage();
     }
 
-    public void ApplyDamage(byte value = 1, bool spawnExplosion = true)
+    public void ApplyDamage(byte value = 1, bool spawnExplosion = true, float destroyAfterSeconds = 0.1f)
     {
         health -= value;
 
-        flashRoutine = StartCoroutine(DoHitBlink());
+        if (spawnExplosion)
+        {
+            flashRoutine = StartCoroutine(DoHitBlink());
+        }
 
         spriteRenderer.material = flashMaterial;
 
@@ -58,7 +61,7 @@ public class Damageable : MonoBehaviour
                 OnDeathHandler(this);
             };
             spriteRenderer.material = flashMaterial;
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, destroyAfterSeconds);
             GameManager.Instance.AddScore(scoreIncrement);
         }
     }

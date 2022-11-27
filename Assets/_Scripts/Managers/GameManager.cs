@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public int score;
     public float normalSpeedMultiplier = 5;
     public float hyperSpeedMultiplier = 40;
+    public float normalSpeedTrailLifetimeMultiplier = 0;
     public float hyperSpeedTrailLifetimeMultiplier = 0.04f;
     public List<WaveConfig> waveConfigs;
     public PlayerController playerTemplate;
@@ -49,8 +50,9 @@ public class GameManager : Singleton<GameManager>
 
             // transition to normal speed
             currentSpeed = normalSpeedMultiplier;
-            StartCoroutine(StartTransitionToNormal(3));
+            StartCoroutine(StartTransition(3, hyperSpeedMultiplier, normalSpeedMultiplier, hyperSpeedTrailLifetimeMultiplier, normalSpeedTrailLifetimeMultiplier));
             yield return new WaitForSeconds(3);
+            trails.enabled = false;
 
             // Spawn wave
             templateWaveController.waveConfig = waveConfig;
@@ -59,43 +61,41 @@ public class GameManager : Singleton<GameManager>
 
             // transition to hyperspeed
             currentSpeed = hyperSpeedMultiplier;
-            StartCoroutine(StartTransitionToHyperSpeed(3));
+            trails.enabled = true;
+            StartCoroutine(StartTransition(3, normalSpeedMultiplier, hyperSpeedMultiplier, normalSpeedTrailLifetimeMultiplier, hyperSpeedTrailLifetimeMultiplier));
             yield return new WaitForSeconds(3);
         }
     }
 
-    private IEnumerator StartTransitionToNormal(float transitionTime)
+    private IEnumerator StartTransition(
+        float transitionTime,
+        float fromSpeed,
+        float toSpeed,
+        float fromTrailSpeed,
+        float toTrailSpeed)
     {
         float t = 0;
-        float startSpeed = main.startSpeedMultiplier;
-        float trailLifetime = trails.lifetimeMultiplier;
+        ParticleSystem.Particle[] m_Particles = new ParticleSystem.Particle[backgroundParticleSystem.main.maxParticles];
         while (t < 1)
         {
             t += Time.deltaTime / transitionTime;
-            main.startSpeedMultiplier = Mathf.Lerp(startSpeed, normalSpeedMultiplier, t);
-            trails.lifetimeMultiplier = Mathf.Lerp(trailLifetime, 0, t);
+            SetParticleSpeed(Vector3.left * Mathf.Lerp(fromSpeed, toSpeed, t), backgroundParticleSystem, m_Particles);
+            trails.lifetimeMultiplier = Mathf.Lerp(fromTrailSpeed, toTrailSpeed, t);
             yield return new WaitForEndOfFrame();
         }
-        main.startSpeedMultiplier = normalSpeedMultiplier;
-        trails.lifetimeMultiplier = 0;
-        trails.enabled = true;
+        SetParticleSpeed(Vector3.left * toSpeed, backgroundParticleSystem, m_Particles);
+        main.startSpeedMultiplier = toSpeed;
+        trails.lifetimeMultiplier = toTrailSpeed;
     }
 
-    private IEnumerator StartTransitionToHyperSpeed(float transitionTime)
+    private static void SetParticleSpeed(Vector3 velocity, ParticleSystem backgroundParticleSystem, ParticleSystem.Particle[] m_Particles)
     {
-        float t = 0;
-        float startSpeed = main.startSpeedMultiplier;
-        float trailLifetime = trails.lifetimeMultiplier;
-        trails.enabled = true;
-        while (t < 1)
+        int numParticlesAlive = backgroundParticleSystem.GetParticles(m_Particles);
+        for (int i = 0; i < numParticlesAlive; i++)
         {
-            t += Time.deltaTime / transitionTime;
-            main.startSpeedMultiplier = Mathf.Lerp(startSpeed, hyperSpeedMultiplier, t);
-            trails.lifetimeMultiplier = Mathf.Lerp(trailLifetime, hyperSpeedTrailLifetimeMultiplier, t);
-            yield return new WaitForEndOfFrame();
+            m_Particles[i].velocity = velocity;
         }
-        main.startSpeedMultiplier = hyperSpeedMultiplier;
-        trails.lifetimeMultiplier = hyperSpeedTrailLifetimeMultiplier;
+        backgroundParticleSystem.SetParticles(m_Particles, numParticlesAlive);
     }
 
     public void AddScore(int increment)

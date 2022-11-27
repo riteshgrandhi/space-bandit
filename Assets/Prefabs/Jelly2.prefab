@@ -733,7 +733,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 12
+    type: 10
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -741,7 +741,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0.04, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 90}
-    m_Scale: {x: 0, y: 1, z: 0}
+    m_Scale: {x: 1, y: 1, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -820,7 +820,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.6
       mode: 0
       spread: 0
       speed:
@@ -878,12 +878,12 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 1
       spread: 0
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: -0.2
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -939,7 +939,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4827,7 +4827,7 @@ GameObject:
   - component: {fileID: 5417101765849057197}
   - component: {fileID: 3960369105347125858}
   m_Layer: 7
-  m_Name: Jelly1
+  m_Name: Jelly2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4890,7 +4890,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -449515704, guid: a82c031486951468395c191aa682eca2, type: 3}
+  m_Sprite: {fileID: 930501799, guid: 848a5e670c47246198fbbdb0f3e24eb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4948,7 +4948,7 @@ Animator:
   m_GameObject: {fileID: 8079784269744899170}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cd62668255554ca8840cea1b31f17e5, type: 2}
+  m_Controller: {fileID: 9100000, guid: aae4ed3c522294bbd8b19a93897fdda3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4970,9 +4970,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16a8f0f38d0f4b14bbca012e584284c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreIncrement: 200
-  health: 1
+  scoreIncrement: 300
+  health: 2
   explosion: {fileID: 8269470522277082639, guid: 86dac789cd6ce456083192911a1b3edc, type: 3}
   flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
   impactExplosion: {fileID: 8269470522277082639, guid: d9859bb8f00b840d4ae986761f196546, type: 3}
-  speed: 4
+  speed: 2

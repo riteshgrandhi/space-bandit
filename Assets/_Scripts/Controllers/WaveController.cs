@@ -40,7 +40,7 @@ public class WaveController : MonoBehaviour
     {
         for (int i = 0; i < currentPhase.count; i++)
         {
-            Vector2 spawnPosition = new Vector3(10, Random.Range(12, -12));
+            Vector2 spawnPosition = new Vector3(10, Random.Range(8, -8));
             Enemy spawnedEnemy = Instantiate(currentPhase.enemy, spawnPosition, Quaternion.identity);
             
             spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
