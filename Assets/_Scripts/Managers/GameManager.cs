@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public WaveController templateWaveController;
     public TextMeshPro livesText;
     public TextMeshPro scoreText;
+    public TextMeshPro gameStatusText;
     public List<Pickable> availablePickables;
 
     [System.NonSerialized]
@@ -46,6 +47,11 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+        if(spawnedPlayer == null || spawnedPlayer.isDead){
+            gameStatusText.text = "MISSION  FAILED";
+
+        }
+
         livesText.text = spawnedPlayer.health.ToString();
         scoreText.text = score.ToString();
     }
@@ -53,18 +59,27 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator StartWaves()
     {
         // time before spawning waves
+        gameStatusText.text = "MISSION:  ELIMINATE  THREATS";
         yield return new WaitForSeconds(2);
+        gameStatusText.text = "";
 
         foreach (WaveConfig waveConfig in waveConfigs)
         {
+            if(spawnedPlayer == null || spawnedPlayer.isDead){
+                gameStatusText.text = "MISSION  FAILED";
+                yield break;
+            }
+
             // time to wait in hyperspeed
             yield return new WaitForSeconds(3);
 
             // transition to normal speed
+            gameStatusText.text = "WARNING:  THREAT  DETECTED\nEXITING  HYPERSPEED...";
             currentSpeed = normalSpeedMultiplier;
             StartCoroutine(StartTransition(3, hyperSpeedMultiplier, normalSpeedMultiplier, hyperSpeedTrailLifetimeMultiplier, normalSpeedTrailLifetimeMultiplier));
             yield return new WaitForSeconds(3);
             trails.enabled = false;
+            gameStatusText.text = "";
 
             // Spawn wave
             templateWaveController.waveConfig = waveConfig;
@@ -72,11 +87,14 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitUntil(() => instantiatedWave.isDone);
 
             // transition to hyperspeed
+            gameStatusText.text = "WAVE  CLEARED\nGOING  TO  HYPERSPEED...";
             currentSpeed = hyperSpeedMultiplier;
             trails.enabled = true;
             StartCoroutine(StartTransition(3, normalSpeedMultiplier, hyperSpeedMultiplier, normalSpeedTrailLifetimeMultiplier, hyperSpeedTrailLifetimeMultiplier));
             yield return new WaitForSeconds(3);
+            gameStatusText.text = "";
         }
+        gameStatusText.text = "MISSION  SUCCESS\nALL  THREATS  ELIMINATED";
     }
 
     private IEnumerator StartTransition(
@@ -116,11 +134,15 @@ public class GameManager : Singleton<GameManager>
 
         if ((score > 500 && lastPickUpTime == null) || (Time.time - lastPickUpTime > 20))
         {
-            // Pickable chosen = availablePickables[Random.Range(0, availablePickables.Count)];
-            Pickable chosen = availablePickables[1];
+            Pickable chosen = availablePickables[Random.Range(0, availablePickables.Count)];
+            // Pickable chosen = availablePickables[1];
             Pickable instantiated = Instantiate(chosen, killLocation, Quaternion.identity);
             instantiated.SetSpeed(currentSpeed);
             lastPickUpTime = Time.time;
         }
+    }
+
+    public void OnPlayerDead(){
+
     }
 }
