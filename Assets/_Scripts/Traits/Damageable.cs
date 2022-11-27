@@ -13,7 +13,6 @@ public class Damageable : MonoBehaviour
     public Material flashMaterial;
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial;
-    private Coroutine flashRoutine;
     public GameObject impactExplosion;
     public bool isDead = false;
     public List<ParticleCollisionEvent> collisionEvents;
@@ -49,7 +48,7 @@ public class Damageable : MonoBehaviour
         ApplyDamage();
     }
 
-    public void ApplyDamage(byte value = 1, bool kia = true)
+    public virtual void ApplyDamage(byte value = 1, bool kia = true)
     {
         if (isDead)
         {
@@ -60,7 +59,7 @@ public class Damageable : MonoBehaviour
 
         if (kia)
         {
-            flashRoutine = StartCoroutine(DoHitBlink());
+            StartCoroutine(DoHitBlink());
         }
 
         spriteRenderer.material = flashMaterial;
@@ -70,7 +69,7 @@ public class Damageable : MonoBehaviour
             isDead = true;
             if (kia)
             {
-                GameManager.Instance.AddScore(scoreIncrement);
+                GameManager.Instance.OnKill(scoreIncrement, transform.position);
                 Instantiate(explosion, transform.position, Quaternion.identity);
             }
             if (OnDeathHandler != null)
@@ -87,8 +86,6 @@ public class Damageable : MonoBehaviour
         spriteRenderer.material = flashMaterial;
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.material = originalMaterial;
-        StopCoroutine(flashRoutine);
-        flashRoutine = null;
     }
 }
 

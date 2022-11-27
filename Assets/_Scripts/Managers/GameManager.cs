@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,13 +16,15 @@ public class GameManager : Singleton<GameManager>
     public WaveController templateWaveController;
     public TextMeshPro livesText;
     public TextMeshPro scoreText;
+    public List<Pickable> availablePickables;
 
-    [NonSerialized]
+    [System.NonSerialized]
     public float currentSpeed;
     private PlayerController spawnedPlayer;
     private ParticleSystem backgroundParticleSystem;
     private ParticleSystem.MainModule main;
     private ParticleSystem.TrailModule trails;
+    private float? lastPickUpTime;
     protected override void Awake()
     {
         base.Awake();
@@ -109,8 +110,17 @@ public class GameManager : Singleton<GameManager>
         backgroundParticleSystem.SetParticles(m_Particles, numParticlesAlive);
     }
 
-    public void AddScore(int increment)
+    public void OnKill(int increment, Vector2 killLocation)
     {
         score += increment;
+
+        if ((score > 500 && lastPickUpTime == null) || (Time.time - lastPickUpTime > 20))
+        {
+            // Pickable chosen = availablePickables[Random.Range(0, availablePickables.Count)];
+            Pickable chosen = availablePickables[1];
+            Pickable instantiated = Instantiate(chosen, killLocation, Quaternion.identity);
+            instantiated.SetSpeed(currentSpeed);
+            lastPickUpTime = Time.time;
+        }
     }
 }

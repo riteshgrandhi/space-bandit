@@ -43,7 +43,7 @@ public class WaveController : MonoBehaviour
             Vector2 spawnPosition = new Vector3(10, Random.Range(8, -8));
             Enemy spawnedEnemy = Instantiate(currentPhase.enemy, spawnPosition, Quaternion.identity);
             
-            spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
+            // spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
 
             spawnedEnemy.OnDeathHandler += OnSpawnedEnemyDeath;
             currentPhaseEnemies.Add(spawnedEnemy);

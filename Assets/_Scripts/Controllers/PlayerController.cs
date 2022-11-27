@@ -1,13 +1,16 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : Damageable
 {
     public PlayerConfig playerConfig;
+    public SpriteRenderer shieldSprite;
     private static Vector2 BOUNDS = new Vector2(7.5f, 7);
     private Rigidbody2D rb;
     private ParticleSystem bulletParticleSystem;
+    private PickableType? activePickable;
+
 
     protected override void Awake()
     {
@@ -36,6 +39,14 @@ public class PlayerController : Damageable
         }
     }
 
+    public override void ApplyDamage(byte value = 1, bool kia = true)
+    {
+        if (activePickable != PickableType.SHIELD)
+        {
+            base.ApplyDamage(value, kia);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy e))
@@ -43,5 +54,33 @@ public class PlayerController : Damageable
             ApplyDamage();
             e.ApplyDamage(e.health);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        bool isSuccess = other.gameObject.TryGetComponent<Pickable>(out Pickable p);
+        if (isSuccess)
+        {
+            Destroy(other.gameObject);
+            activePickable = p.pickableType;
+            switch (activePickable)
+            {
+                case PickableType.SHIELD:
+                    Debug.Log(shieldSprite.name);
+                    shieldSprite.enabled = true;
+                    StartCoroutine(DeactivateShield());
+                    break;
+                case PickableType.HEALTH:
+                    health++;
+                    break;
+            }
+        }
+    }
+
+    private IEnumerator DeactivateShield()
+    {
+        yield return new WaitForSeconds(5f);
+        shieldSprite.enabled = false;
+        activePickable = null;
     }
 }

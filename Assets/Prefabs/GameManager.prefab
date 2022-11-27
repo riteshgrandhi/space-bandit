@@ -61,6 +61,9 @@ MonoBehaviour:
   templateWaveController: {fileID: 3789937375752174787, guid: 1d787a4a2e84946da890ca21bf15372c, type: 3}
   livesText: {fileID: 6704060929941149308}
   scoreText: {fileID: 4430865752375780965}
+  availablePickables:
+  - {fileID: 1580485168593157577, guid: 85e31ed54429b40ffa08108683e94230, type: 3}
+  - {fileID: 1580485168593157577, guid: 825c9ad8443fc4b5cb8b203c26746729, type: 3}
 --- !u!199 &2211600221206838753
 ParticleSystemRenderer:
   serializedVersion: 6

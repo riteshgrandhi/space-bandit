@@ -395,19 +395,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 62718888866390592, guid: 6ec52df4400f1b64e9cd064b7e57151c, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.2101695
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 62718888866390592, guid: 6ec52df4400f1b64e9cd064b7e57151c, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.087628864
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 62718888866390592, guid: 6ec52df4400f1b64e9cd064b7e57151c, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.5785311
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 62718888866390592, guid: 6ec52df4400f1b64e9cd064b7e57151c, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.82474226
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 62718888866390595, guid: 6ec52df4400f1b64e9cd064b7e57151c, type: 3}
       propertyPath: m_Name
