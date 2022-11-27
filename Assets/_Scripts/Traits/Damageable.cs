@@ -42,17 +42,6 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    // bool isSuccess = collision.gameObject.TryGetComponent<PlayerController>(out PlayerController playerController);
-    // if (isSuccess)
-    // {
-    //     Debug.Log("No Touchie");
-    //     ApplyDamage(health);
-    // }
-    // ApplyDamage(health);
-    // }
-
     public void ApplyDamage(byte value = 1, bool spawnExplosion = true)
     {
         health -= value;

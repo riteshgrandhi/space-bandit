@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
+    public bool isDone = false;
     public WaveConfig waveConfig;
     private List<Damageable> allSpawnedEnemies = new List<Damageable>();
     private List<Damageable> currentPhaseEnemies = new List<Damageable>();
@@ -12,8 +13,6 @@ public class WaveController : MonoBehaviour
 
     private IEnumerator StartWavePhases()
     {
-        Debug.Log("In StartWavePhases");
-
         foreach (Phase currentPhase in waveConfig.phases)
         {
             currentPhaseEnemies.Clear();
@@ -33,11 +32,11 @@ public class WaveController : MonoBehaviour
 
             yield return new WaitForSeconds(currentPhase.waitBeforeNextPhaseSeconds);
         }
+        isDone = true;
     }
 
     private List<Damageable> SpawnEnemiesForPhase(Phase currentPhase)
     {
-        Debug.Log("In SpawnEnemiesForPhase");
         for (int i = 0; i < currentPhase.count; i++)
         {
             Vector2 spawnPosition = new Vector3(10, Random.Range(7, -7));
@@ -53,9 +52,9 @@ public class WaveController : MonoBehaviour
     {
         Debug.Log(enemy.name + " Dead!");
         bool resultAll = allSpawnedEnemies.Remove(enemy);
-        Debug.Log("resultAll: " + resultAll);
+        // Debug.Log("resultAll: " + resultAll);
 
         bool resultCurrent = currentPhaseEnemies.Remove(enemy);
-        Debug.Log("resultCurrent: " + resultCurrent);
+        // Debug.Log("resultCurrent: " + resultCurrent);
     }
 }

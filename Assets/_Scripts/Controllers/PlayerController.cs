@@ -52,7 +52,6 @@ public class PlayerController : Damageable
     {
         if (collider.gameObject.TryGetComponent<Enemy>(out Enemy e))
         {
-            Debug.Log("Daamn");
             ApplyDamage(health);
         }
     }
