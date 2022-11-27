@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
@@ -14,6 +15,10 @@ public class GameManager : Singleton<GameManager>
     public List<WaveConfig> waveConfigs;
     public PlayerController playerTemplate;
     public WaveController templateWaveController;
+    public TextMeshPro livesText;
+    public TextMeshPro scoreText;
+
+    [NonSerialized]
     public float currentSpeed;
     private PlayerController spawnedPlayer;
     private ParticleSystem backgroundParticleSystem;
@@ -36,6 +41,12 @@ public class GameManager : Singleton<GameManager>
         spawnedPlayer = Instantiate(playerTemplate);
 
         StartCoroutine(StartWaves());
+    }
+
+    void Update()
+    {
+        livesText.text = spawnedPlayer.health.ToString();
+        scoreText.text = score.ToString();
     }
 
     private IEnumerator StartWaves()

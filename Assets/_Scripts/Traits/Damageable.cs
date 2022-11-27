@@ -15,7 +15,7 @@ public class Damageable : MonoBehaviour
     private Material originalMaterial;
     private Coroutine flashRoutine;
     public GameObject impactExplosion;
-
+    public bool isDead = false;
     public List<ParticleCollisionEvent> collisionEvents;
     protected virtual void Awake()
     {
@@ -26,24 +26,39 @@ public class Damageable : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (Mathf.Abs(transform.position.x) > 10)
         {
-            ApplyDamage(health, false, 5f);
+            ApplyDamage(health, false);
         }
     }
 
     protected virtual void OnParticleCollision(GameObject other)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         Instantiate(impactExplosion, gameObject.transform.position + Vector3.left * gameObject.GetComponent<Collider2D>().bounds.extents.x, Quaternion.identity);
 
         ApplyDamage();
     }
 
-    public void ApplyDamage(byte value = 1, bool spawnExplosion = true, float destroyAfterSeconds = 0.1f)
+    public void ApplyDamage(byte value = 1, bool kia = true)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         health -= value;
 
-        if (spawnExplosion)
+        if (kia)
         {
             flashRoutine = StartCoroutine(DoHitBlink());
         }
@@ -52,8 +67,10 @@ public class Damageable : MonoBehaviour
 
         if (health <= 0)
         {
-            if (spawnExplosion)
+            isDead = true;
+            if (kia)
             {
+                GameManager.Instance.AddScore(scoreIncrement);
                 Instantiate(explosion, transform.position, Quaternion.identity);
             }
             if (OnDeathHandler != null)
@@ -61,8 +78,7 @@ public class Damageable : MonoBehaviour
                 OnDeathHandler(this);
             };
             spriteRenderer.material = flashMaterial;
-            Destroy(gameObject, destroyAfterSeconds);
-            GameManager.Instance.AddScore(scoreIncrement);
+            Destroy(gameObject, kia ? 0.1f : 5f);
         }
     }
 

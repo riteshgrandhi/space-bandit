@@ -40,7 +40,8 @@ public class PlayerController : Damageable
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy e))
         {
-            ApplyDamage(health);
+            ApplyDamage();
+            e.ApplyDamage(e.health);
         }
     }
 }

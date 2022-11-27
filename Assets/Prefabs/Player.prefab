@@ -4917,7 +4917,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9a2cac0b612e94dca98c9b3f7edcda43, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -4968,11 +4968,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreIncrement: 0
-  health: 1
+  health: 4
   explosion: {fileID: 8269470522277082639, guid: 86dac789cd6ce456083192911a1b3edc, type: 3}
   flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
-  playerConfig: {fileID: 11400000, guid: 928cece21d14943569328c5d78cdd910, type: 2}
   impactExplosion: {fileID: 8269470522277082639, guid: d9859bb8f00b840d4ae986761f196546, type: 3}
+  isDead: 0
+  playerConfig: {fileID: 11400000, guid: 928cece21d14943569328c5d78cdd910, type: 2}
 --- !u!95 &-8531800041290051521
 Animator:
   serializedVersion: 4
