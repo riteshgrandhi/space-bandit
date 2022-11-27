@@ -48,21 +48,21 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(5);
 
             // transition to normal speed
-            StartCoroutine(StartTransition(normalSpeedMultiplier, 5, false));
+            StartCoroutine(StartTransitionToNormal(5));
             yield return new WaitForSeconds(5);
 
-            // Spawn waves
+            // Spawn wave
             templateWaveController.waveConfig = waveConfig;
             WaveController instantiatedWave = Instantiate(templateWaveController);
             yield return new WaitUntil(() => instantiatedWave.isDone);
 
             // transition to hyperspeed
-            StartCoroutine(StartTransition(hyperSpeedMultiplier, 5, true));
+            StartCoroutine(StartTransitionToHyperSpeed(5));
             yield return new WaitForSeconds(5);
         }
     }
 
-    private IEnumerator StartTransition(float targetSpeed, float transitionTime, bool trailsEnabledOnDone)
+    private IEnumerator StartTransitionToNormal(float transitionTime)
     {
         float t = 0;
         float startSpeed = main.startSpeedMultiplier;
@@ -70,13 +70,30 @@ public class GameManager : Singleton<GameManager>
         while (t < 1)
         {
             t += Time.deltaTime / transitionTime;
-            main.startSpeedMultiplier = Mathf.Lerp(startSpeed, targetSpeed, t);
-            trails.lifetimeMultiplier = Mathf.Lerp(trailLifetime, trailsEnabledOnDone ? hyperSpeedTrailLifetimeMultiplier : 0, t);
+            main.startSpeedMultiplier = Mathf.Lerp(startSpeed, normalSpeedMultiplier, t);
+            trails.lifetimeMultiplier = Mathf.Lerp(trailLifetime, 0, t);
             yield return new WaitForEndOfFrame();
         }
-        main.startSpeedMultiplier = targetSpeed;
-        trails.lifetimeMultiplier = trailsEnabledOnDone ? hyperSpeedTrailLifetimeMultiplier : 0;
-        trails.enabled = trailsEnabledOnDone;
+        main.startSpeedMultiplier = normalSpeedMultiplier;
+        trails.lifetimeMultiplier = 0;
+        trails.enabled = true;
+    }
+
+    private IEnumerator StartTransitionToHyperSpeed(float transitionTime)
+    {
+        float t = 0;
+        float startSpeed = main.startSpeedMultiplier;
+        float trailLifetime = trails.lifetimeMultiplier;
+        trails.enabled = true;
+        while (t < 1)
+        {
+            t += Time.deltaTime / transitionTime;
+            main.startSpeedMultiplier = Mathf.Lerp(startSpeed, hyperSpeedMultiplier, t);
+            trails.lifetimeMultiplier = Mathf.Lerp(trailLifetime, hyperSpeedTrailLifetimeMultiplier, t);
+            yield return new WaitForEndOfFrame();
+        }
+        main.startSpeedMultiplier = hyperSpeedMultiplier;
+        trails.lifetimeMultiplier = hyperSpeedTrailLifetimeMultiplier;
     }
 
     public void AddScore(int increment)

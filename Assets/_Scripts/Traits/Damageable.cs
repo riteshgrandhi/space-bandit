@@ -8,9 +8,6 @@ public class Damageable : MonoBehaviour
     public int scoreIncrement = 100;
     public byte health = 4;
     public GameObject explosion;
-
-    public Type t;
-
     public OnDeath OnDeathHandler;
     public Material flashMaterial;
     private SpriteRenderer spriteRenderer;

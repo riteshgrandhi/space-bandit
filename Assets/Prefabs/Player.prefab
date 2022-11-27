@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5333779267280138440}
   - component: {fileID: 5333779267280138442}
   - component: {fileID: 5333779267280138444}
+  - component: {fileID: -8531800041290051521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4144f1ed8eebc4fc886ea0a144da79ab, type: 3}
+  m_Sprite: {fileID: 1134056788, guid: 89366aafb238c4cdca918090362748b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4907,7 +4908,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5625, y: 1.5625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4941,3 +4942,23 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: 0d6fd92fee62f406fbf42de9bd065c07, type: 2}
   playerConfig: {fileID: 11400000, guid: 928cece21d14943569328c5d78cdd910, type: 2}
   impactExplosion: {fileID: 8269470522277082639, guid: d9859bb8f00b840d4ae986761f196546, type: 3}
+--- !u!95 &-8531800041290051521
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5333779267280138445}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c33175fdce60043fe8ee2947b3ba80f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -23,10 +23,12 @@ public class WaveController : MonoBehaviour
                 case OnPhaseSpawningDone.WAIT_FOR_ALL_CURRENT_DONE:
                     yield return new WaitUntil(() => allSpawnedEnemies.Count == 0);
                     break;
-                case OnPhaseSpawningDone.WAIT_FOR_THIS_PHASE_DONE:
-                    yield return new WaitUntil(() => currentPhaseEnemies.Count == 0);
-                    break;
+                    // Currently not working as expected
+                // case OnPhaseSpawningDone.WAIT_FOR_THIS_PHASE_DONE:
+                    // yield return new WaitUntil(() => currentPhaseEnemies.Count == 0);
+                    // break;
                 case OnPhaseSpawningDone.CONTINUE_TO_NEXT_PHASE:
+                default:
                     break;
             }
 

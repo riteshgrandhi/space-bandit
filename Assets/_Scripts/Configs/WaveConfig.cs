@@ -21,6 +21,6 @@ public class Phase
 public enum OnPhaseSpawningDone
 {
     CONTINUE_TO_NEXT_PHASE,
-    WAIT_FOR_THIS_PHASE_DONE,
+    // WAIT_FOR_THIS_PHASE_DONE,
     WAIT_FOR_ALL_CURRENT_DONE
 }
