@@ -61,11 +61,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55bb78d5352cf014ba973fd4a67a61f0, type: 2}
   - {fileID: 11400000, guid: 10c9ccdf144fd8c45a405b916352c29c, type: 2}
   - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
-  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
-  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
-  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
-  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
-  - {fileID: 11400000, guid: a2b76148fc2f4da45816e69752197001, type: 2}
+  - {fileID: 11400000, guid: 8779fbd0d95052c4a9c77ddd5aae50f8, type: 2}
+  - {fileID: 11400000, guid: a2f8d918448393046aa2ca877a6efb1a, type: 2}
+  - {fileID: 11400000, guid: fe7416d4a3e3376498222b107e3bf0c9, type: 2}
+  - {fileID: 11400000, guid: 6f8e5f46988bab94b959fccc623bd9be, type: 2}
+  - {fileID: 11400000, guid: b104f50bcb135044fbe1d152269f45c1, type: 2}
   playerTemplate: {fileID: 5333779267280138444, guid: 2e3b86904a3fa452ba561e25be396b82, type: 3}
   templateWaveController: {fileID: 3789937375752174787, guid: 1d787a4a2e84946da890ca21bf15372c, type: 3}
   livesText: {fileID: 6704060929941149308}

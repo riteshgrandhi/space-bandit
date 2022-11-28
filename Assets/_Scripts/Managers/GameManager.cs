@@ -49,16 +49,12 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         if(spawnedPlayer == null || spawnedPlayer.isDead){
-<<<<<<< Updated upstream
-            gameStatusText.text = "MISSION  FAILED";
-=======
             gameStatusText.text = "MISSION FAILED \nPress R to Restart";
             
             if(Input.GetKeyUp(KeyCode.R)){
                 SceneManager.LoadScene(0);
             }
 
->>>>>>> Stashed changes
         }
 
         livesText.text = spawnedPlayer.health.ToString();
