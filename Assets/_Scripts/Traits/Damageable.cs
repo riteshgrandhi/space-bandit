@@ -78,6 +78,7 @@ public class Damageable : MonoBehaviour
             };
             spriteRenderer.material = flashMaterial;
             Destroy(gameObject, kia ? 0.1f : 5f);
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.explosionAudioClip);
         }
     }
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(ParticleSystem))]
+[RequireComponent(typeof(ParticleSystem), typeof(AudioSource))]
 public class GameManager : Singleton<GameManager>
 {
     public int score;
@@ -19,9 +19,14 @@ public class GameManager : Singleton<GameManager>
     public TextMeshPro scoreText;
     public TextMeshPro gameStatusText;
     public List<Pickable> availablePickables;
+    public AudioClip hyperDriveAudioClip;
+    public AudioClip explosionAudioClip;
+    public AudioClip pickUpAudioClip;
 
     [System.NonSerialized]
     public float currentSpeed;
+    [System.NonSerialized]
+    public AudioSource audioSource;
     private PlayerController spawnedPlayer;
     private ParticleSystem backgroundParticleSystem;
     private ParticleSystem.MainModule main;
@@ -62,9 +67,6 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator StartWaves()
     {
-
-        AudioSource audioSource;
-
         // time before spawning waves
         gameStatusText.text = "MISSION:  ELIMINATE  THREATS";
         yield return new WaitForSeconds(2);
@@ -96,6 +98,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitUntil(() => instantiatedWave.isDone);
 
             // transition to hyperspeed
+            audioSource.PlayOneShot(hyperDriveAudioClip);
             gameStatusText.text = "WAVE  CLEARED\nGOING  TO  HYPERSPEED...";
             currentSpeed = hyperSpeedMultiplier;
             trails.enabled = true;
