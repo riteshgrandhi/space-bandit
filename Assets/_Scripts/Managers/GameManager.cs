@@ -54,7 +54,6 @@ public class GameManager : Singleton<GameManager>
             if(Input.GetKeyUp(KeyCode.R)){
                 SceneManager.LoadScene(0);
             }
-
         }
 
         livesText.text = spawnedPlayer.health.ToString();
