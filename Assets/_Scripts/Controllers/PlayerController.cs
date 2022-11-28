@@ -61,6 +61,7 @@ public class PlayerController : Damageable
         bool isSuccess = other.gameObject.TryGetComponent<Pickable>(out Pickable p);
         if (isSuccess)
         {
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.pickUpAudioClip);
             Destroy(other.gameObject);
             activePickable = p.pickableType;
             switch (activePickable)
