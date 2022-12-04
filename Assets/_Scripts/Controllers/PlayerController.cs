@@ -29,13 +29,13 @@ public class PlayerController : Damageable
         var yValidPosition = Mathf.Clamp(rb.position.y, -BOUNDS.y, BOUNDS.y);
         rb.position = new Vector2(xValidPosition, yValidPosition);
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            bulletParticleSystem.Stop();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1"))
         {
             bulletParticleSystem.Play();
+        }
+        else if(Input.GetButtonUp("Fire1"))
+        { 
+            bulletParticleSystem.Stop();
         }
     }
 

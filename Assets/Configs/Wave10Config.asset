@@ -16,24 +16,64 @@ MonoBehaviour:
   - enemy: {fileID: 3960369105347125858, guid: 01b25a6fe448f4cf082c760ecf16947d, type: 3}
     count: 2
     onPhaseSpawningDone: 0
-    waitBeforeNextPhaseSeconds: 1
-  - enemy: {fileID: 8079784269744899160, guid: cf08bc73dd6d145ad99a07536ecd1a32, type: 3}
-    count: 2
-    onPhaseSpawningDone: 0
-    waitBeforeNextPhaseSeconds: 2
+    waitBeforeNextPhaseSeconds: 0
   - enemy: {fileID: 3960369105347125858, guid: 023a69d4574fd4f74917661b5ac7d277, type: 3}
     count: 2
     onPhaseSpawningDone: 0
     waitBeforeNextPhaseSeconds: 0
   - enemy: {fileID: 3960369105347125858, guid: 2647af3f5281945e9a9d1c6a71d39c92, type: 3}
-    count: 1
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 8079784269744899160, guid: b2fd608e55ffa40c19d7de202fef8d59, type: 3}
+    count: 3
     onPhaseSpawningDone: 1
-    waitBeforeNextPhaseSeconds: 2
+    waitBeforeNextPhaseSeconds: 3
   - enemy: {fileID: 3960369105347125858, guid: 2647af3f5281945e9a9d1c6a71d39c92, type: 3}
     count: 2
     onPhaseSpawningDone: 0
-    waitBeforeNextPhaseSeconds: 2
-  - enemy: {fileID: 3960369105347125858, guid: 01b25a6fe448f4cf082c760ecf16947d, type: 3}
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 3960369105347125858, guid: 95ab264af773f42039378f6645d90a9a, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 3960369105347125858, guid: 266b45e7320864484a252fcc859be62e, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 8079784269744899160, guid: bb6260723c12d48f787b9ebf37a28f2f, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 3
+  - enemy: {fileID: 3960369105347125858, guid: 95ab264af773f42039378f6645d90a9a, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 3960369105347125858, guid: 266b45e7320864484a252fcc859be62e, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 3960369105347125858, guid: 95ab264af773f42039378f6645d90a9a, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 1
+  - enemy: {fileID: 3960369105347125858, guid: 266b45e7320864484a252fcc859be62e, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 1
+  - enemy: {fileID: 8079784269744899160, guid: bb6260723c12d48f787b9ebf37a28f2f, type: 3}
+    count: 2
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 3960369105347125858, guid: 266b45e7320864484a252fcc859be62e, type: 3}
     count: 4
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 0
+  - enemy: {fileID: 8079784269744899160, guid: cf08bc73dd6d145ad99a07536ecd1a32, type: 3}
+    count: 4
+    onPhaseSpawningDone: 0
+    waitBeforeNextPhaseSeconds: 1
+  - enemy: {fileID: 3960369105347125858, guid: 266b45e7320864484a252fcc859be62e, type: 3}
+    count: 6
     onPhaseSpawningDone: 1
-    waitBeforeNextPhaseSeconds: 2
+    waitBeforeNextPhaseSeconds: 1
