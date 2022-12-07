@@ -31,5 +31,5 @@ MonoBehaviour:
     waitBeforeNextPhaseSeconds: 2
   - enemy: {fileID: 3960369105347125858, guid: 2647af3f5281945e9a9d1c6a71d39c92, type: 3}
     count: 2
-    onPhaseSpawningDone: 0
+    onPhaseSpawningDone: 1
     waitBeforeNextPhaseSeconds: 2

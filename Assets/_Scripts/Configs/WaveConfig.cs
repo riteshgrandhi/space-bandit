@@ -13,7 +13,11 @@ public class WaveConfig : ScriptableObject
 public class Phase
 {
     public Enemy enemy;
+    [Range(1, 10)]
     public int count;
+
+    [Range(0, 6)]
+    public float maxWaitBeforeEachSpawnSeconds = 0.5f;
     public OnPhaseSpawningDone onPhaseSpawningDone;
     public float waitBeforeNextPhaseSeconds = 2;
 }

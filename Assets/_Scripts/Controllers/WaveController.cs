@@ -15,7 +15,18 @@ public class WaveController : MonoBehaviour
         foreach (Phase currentPhase in waveConfig.phases)
         {
             currentPhaseEnemies.Clear();
-            currentPhaseEnemies.AddRange(SpawnEnemiesForPhase(currentPhase));
+            for (int i = 0; i < currentPhase.count; i++)
+            {
+                Vector2 spawnPosition = new Vector3(10, Random.Range(7, -7));
+                Enemy spawnedEnemy = Instantiate(currentPhase.enemy, spawnPosition, Quaternion.identity);
+                
+                yield return new WaitForSeconds(Random.Range(0, currentPhase.maxWaitBeforeEachSpawnSeconds));
+                // spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
+
+                spawnedEnemy.OnDeathHandler += OnSpawnedEnemyDeath;
+                currentPhaseEnemies.Add(spawnedEnemy);
+                allSpawnedEnemies.Add(spawnedEnemy);
+            }
 
             switch (currentPhase.onPhaseSpawningDone)
             {
@@ -34,22 +45,6 @@ public class WaveController : MonoBehaviour
             yield return new WaitForSeconds(currentPhase.waitBeforeNextPhaseSeconds);
         }
         isDone = true;
-    }
-
-    private List<Damageable> SpawnEnemiesForPhase(Phase currentPhase)
-    {
-        for (int i = 0; i < currentPhase.count; i++)
-        {
-            Vector2 spawnPosition = new Vector3(10, Random.Range(8, -8));
-            Enemy spawnedEnemy = Instantiate(currentPhase.enemy, spawnPosition, Quaternion.identity);
-            
-            // spawnedEnemy.SetSpeed(GameManager.Instance.currentSpeed);
-
-            spawnedEnemy.OnDeathHandler += OnSpawnedEnemyDeath;
-            currentPhaseEnemies.Add(spawnedEnemy);
-            allSpawnedEnemies.Add(spawnedEnemy);
-        }
-        return currentPhaseEnemies;
     }
 
     private void OnSpawnedEnemyDeath(Damageable enemy)

@@ -20,15 +20,19 @@ MonoBehaviour:
   - enemy: {fileID: 8079784269744899160, guid: cf08bc73dd6d145ad99a07536ecd1a32, type: 3}
     count: 2
     onPhaseSpawningDone: 0
-    waitBeforeNextPhaseSeconds: 2
+    waitBeforeNextPhaseSeconds: 1
+  - enemy: {fileID: 3960369105347125858, guid: 01b25a6fe448f4cf082c760ecf16947d, type: 3}
+    count: 2
+    onPhaseSpawningDone: 1
+    waitBeforeNextPhaseSeconds: 5
   - enemy: {fileID: 3960369105347125858, guid: 023a69d4574fd4f74917661b5ac7d277, type: 3}
     count: 2
     onPhaseSpawningDone: 0
-    waitBeforeNextPhaseSeconds: 0
+    waitBeforeNextPhaseSeconds: 2
   - enemy: {fileID: 3960369105347125858, guid: 2647af3f5281945e9a9d1c6a71d39c92, type: 3}
     count: 1
     onPhaseSpawningDone: 1
-    waitBeforeNextPhaseSeconds: 2
+    waitBeforeNextPhaseSeconds: 5
   - enemy: {fileID: 3960369105347125858, guid: 2647af3f5281945e9a9d1c6a71d39c92, type: 3}
     count: 2
     onPhaseSpawningDone: 0

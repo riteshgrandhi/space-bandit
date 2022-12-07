@@ -67,7 +67,6 @@ public class PlayerController : Damageable
             switch (activePickable)
             {
                 case PickableType.SHIELD:
-                    Debug.Log(shieldSprite.name);
                     shieldSprite.enabled = true;
                     StartCoroutine(DeactivateShield());
                     break;
